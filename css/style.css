@@ -9,8 +9,7 @@
   --transition: all 260ms ease-in-out;
 }
 
-
-/* Global */
+/* Global selector */
 * {
   font-family: 'Courier New', Courier, monospace;
 }
@@ -21,16 +20,38 @@ html, body {
   height: 100%;
 }
 
+body {
+  padding-bottom: 100px;
+}
+
 header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background: var(--brandPrimary);
   text-align: center;
 }
 
 nav {
   padding: 30px 15px 15px 15px;
+}
+
+.container {
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.img-responsive {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+}
+
+.two-cols {
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 30px;
 }
 
 .btn {
@@ -48,8 +69,12 @@ nav {
   background: var(--brandSecondaryDark);
 }
 
+.text-primary {
+  color: var(--brandPrimary);
+}
+
 .text-secondary {
-  color: var(--brandSecondaryDark);
+  color: var(--brandSecondary);
 }
 
 nav a {
@@ -62,6 +87,7 @@ nav a {
 main {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   padding: 60px 15px;
 }
 
@@ -72,10 +98,18 @@ main {
   position: relative;
   top: 20px;
   padding: 10px;
+  z-index: 1;
 }
 
 #logo-container h2 {
   margin-bottom: 0;
+}
+
+.pt-60 {
+  padding-top: 60px;
+}
+.pb-60 {
+  padding-bottom: 60px;
 }
 
 .bg-dark {
@@ -90,21 +124,28 @@ main {
 #hero {
   background: black;
   background-image: url("../images/background.png");
+  border-bottom: var(--primaryBorder);
   color: white;
   text-align: center;
   padding: 60px 15px;
   font-size: 42px;
-  border-bottom: var(--primaryBorder);
+  position: relative;
+}
+
+#hero canvas {
+  position: absolute;
+  top: 0; 
+  left: 0;
 }
 
 .callout {
-  border: 5px dotted var(--brandPrimary);
+  border: 6px dotted var(--brandPrimary);
   text-align: center;
   margin: 0 30px;
   padding: 30px 15px;
   flex: 1 0 400px;
+  margin-bottom: 25px;
 }
-
 
 #gallery {
   display: flex;
@@ -116,13 +157,14 @@ main {
 
 .gallery-item {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   cursor: pointer;
   border: var(--primaryBorder);
   background: black;
   color: white;
+  border-radius: var(--awesomeRadius);
   margin: 5px;
   width: 240px;
   height: 240px;
@@ -131,46 +173,78 @@ main {
   transition: var(--transition);
 }
 
-.gallery-item:hover {
-  background-color: var(--brandSecondary);
-  border-color: white;
-  color: black;
-} 
-
-.gallery-item:hover .on-sale {
-  background: white);
-
-}
-
-.gallery-item:hover i {
-  transform: scale(2);
-}
-
 .on-sale {
   background: var(--brandSecondary);
   color: black;
   position: absolute;
-  top: 10px;
+  top: 10px; 
   left: 0;
+}
+
+.gallery-item i {
+  transition: var(--transition);
+}
+
+.gallery-item p {
+  margin: 0;
+}
+
+.gallery-item:hover {
+  background-color: var(--brandSecondary);
+  border-color: white; 
+  color: black;
+}
+
+.gallery-item:hover .on-sale {
+  background: white;
+}
+
+.gallery-item:hover i {
+  transform: scale(1.25);
+}
+
+.socials a {
+  text-decoration: none;
+  color: white;
+  margin-right: 10px;
 }
 
 footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 15px;
+  justify-content: space-between;
+  border-top: var(--primaryBorder);
+  padding: 15px;
+  margin-top: 60px;
 }
 
+/* Media Queries */
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-/* MEADIA QUERY*/
-@media screen and (max-width: 980px) {
-  header 
-}
+  header nav {
+    background: black;
+  }
 
-@media screen and (max-width: 767px) {
-  
-}
+  header nav a {
+    color: var(--brandPrimary);
+    font-size: 14px;
+    margin: 0 10px;
+  }
 
-@media screen and (max-width: 575px) {
+  .callout {
+    flex: 1;
+  }
 
+  #hero h1,
+  #hero a {
+    font-size: 30px;
+  }
+
+  footer {
+    flex-direction: column;
+  }
 }
